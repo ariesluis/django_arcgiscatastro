@@ -1,0 +1,1070 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulario Ingreso de Datos</title>
+	<meta charset=utf-8>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/insert_view.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+</head>
+<body>
+
+	<div class="container">
+
+		<form action="{% url 'predio.views.insertar_predio' %}" class="well form-horizontal" method="post"  id="insert_form">{% csrf_token %}
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Catastro Predial Rural - Registro Predios</legend>
+
+				<!--busqueda y propietario-->
+				<div class="busqueda_propietario">
+					<form class="navbar-form navbar-left" role="search">
+						<div class="col-md-3 form-group">
+					    	<input type="text" class="form-control" placeholder="Ingrese CI/RUC o Apellidos">
+					  	</div>
+					 	<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+
+					<h4>Propietario</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Cedula/R.U.C</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="dni" placeholder="cedula/RUC" class="form-control"  type="text" maxlength="10" disabled>
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Apellidos</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="apellidos" placeholder="apellidos" class="form-control"  type="text" disabled>
+						    </div>
+					  	</div>
+					</div>
+
+					<!-- Text input-->
+
+					<div class="form-group">
+					  <label class="col-md-4 control-label" >Nombres</label> 
+					    <div class="col-md-4 inputGroupContainer">
+					    <div class="input-group">
+					  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					  <input name="nombre" placeholder="nombres" class="form-control"  type="text" disabled>
+					    </div>
+					  </div>
+					</div>
+				</div>
+				
+
+				<!--codigo predial-->
+				<div class="clave_catastral">
+					<h4>Clave Catastral</h4>
+					<div class="form-group">
+
+						<h5>Codigo Nacional</h5>
+
+						<label class="col-md-1 control-label">Provincia</label>  
+						<div class="col-md-2 inputGroupContainer">
+					  		<input  name="cod_prov" placeholder="00" class="form-control"  type="text" maxlength="2">
+					  	</div>
+
+					  	<label class="col-md-1 control-label">Cantón</label>  
+						<div class="col-md-2 inputGroupContainer">
+					  		<input  name="cod_can" placeholder="00" class="form-control"  type="text" maxlength="2">
+					  	</div>
+
+					  	<label class="col-md-1 control-label">Parroquia</label>  
+						<div class="col-md-2 inputGroupContainer">
+					  		<input  name="cod_par" placeholder="00" class="form-control"  type="text" maxlength="2">
+					  	</div>
+					</div>
+					  	
+					<div class="form-group">
+						<h5>Codigo Local</h5>
+					  	<label class="col-md-1 control-label">Zona</label>  
+						<div class="col-md-2 inputGroupContainer">
+					  		<input  name="cod_zon" placeholder="00" class="form-control"  type="text" maxlength="2">
+					  	</div>
+
+					  	<label class="col-md-1 control-label">Sector</label>  
+						<div class="col-md-2 inputGroupContainer">
+					  		<input  name="cod_sec" placeholder="00" class="form-control"  type="text" maxlength="2">
+					  	</div>
+
+					  	<label class="col-md-1 control-label">Poligono</label>  
+						<div class="col-md-2 inputGroupContainer">
+					  		<input  name="cod_man" placeholder="00" class="form-control"  type="text" maxlength="2">
+					  	</div>
+
+					  	<label class="col-md-1 control-label">Predio</label>  
+						<div class="col-md-2 inputGroupContainer">
+					  		<input  name="cod_pre" placeholder="000" class="form-control"  type="text" maxlength="3">
+					  	</div>
+
+					  	<label class="col-md-1 control-label">Division</label>  
+						<div class="col-md-2 inputGroupContainer">
+					  		<input  name="cod_div" placeholder="000" class="form-control"  type="text" maxlength="3">
+					  	</div>
+					</div>
+					  	
+					<div class="form-group">
+						<label class="col-md-4 control-label">Código Anterior</label>  
+					  	<div class="col-md-4 inputGroupContainer">
+					  		<input  name="cod_ant" placeholder="00000000000" class="form-control"  type="text" maxlength="20">
+					  	</div>
+					</div>
+				</div>
+
+				<!--datos predio-->
+				<div class="ubicacion_predio">
+					<h4>Ubicación</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Código de Sitio</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="cod_sitio" placeholder="codigo sitio" class="form-control"  type="text" maxlength="6">
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Nombre Sitio</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="nom_sitio" placeholder="nombre sitio" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+
+					<!-- Text input-->
+
+					<div class="form-group">
+					  <label class="col-md-4 control-label" >Código de Via</label> 
+					    <div class="col-md-4 inputGroupContainer">
+					    <div class="input-group">
+					  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					  <input name="cod_via" placeholder="codigo via" class="form-control"  type="text">
+					    </div>
+					  </div>
+					</div>
+
+					<!-- Text input-->
+
+					<div class="form-group">
+					  	<label class="col-md-4 control-label" >Nombre de Via</label> 
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						  		<input name="nom_via" placeholder="nombre via" class="form-control" type="text" required="">
+						    </div>
+					  	</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Nombre Predio</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+						  		<input name="nom_predio" placeholder="nombre predio" class="form-control"  type="text">
+						    </div>
+					  </div>
+					</div>
+
+
+					<!-- Text input-->
+					       
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Coordenadas X</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+						  		<input name="coor_x" placeholder="x" class="form-control" type="text" maxlength="6">
+						    </div>
+					  	</div>
+					</div>
+
+					<!-- Text input-->
+					      
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Coordenadas Y</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="coor_y" placeholder="y" class="form-control" type="text" maxlength="6">
+						    </div>
+					  </div>
+					</div>
+
+				<!-- datos lindero predio-->
+
+				<div class="linderos_predio">
+					<h4>Linderos Predio</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Norte</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="lin_norte" placeholder="Nombres propietario" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Sur</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="lin_sur" placeholder="Nombres propietario" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Este</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="lin_este" placeholder="Nombres propietario" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Oeste</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="lin_oeste" placeholder="Nombres propietario" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+				</div>
+				<!-- datos referencia cartografica -->
+				   
+				<div class="datos_cartograficos">
+					<h4>Referencia Cartograficas</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Carta Topografica</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="c_top" placeholder="Codigo" class="form-control"  type="text" maxlength="10">
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Imagen Satelital</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="img_sat" placeholder="codigo" class="form-control"  type="text" maxlength="10">
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Foto Area</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="fot_area" placeholder="codigo" class="form-control" type="text" maxlength="10">
+						    </div>
+					  </div>
+					</div>
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Otros</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="otro_ref_car" placeholder="codigo" class="form-control" type="text" maxlength="10">
+						    </div>
+					  </div>
+					</div>
+				</div>
+
+				<!--dato residencia propietario-->
+				<div class="dato_res_pro">
+					<h4>Residencia del Propietario</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Residencia</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="res_pro">
+								  	<option value="no_info">Sin informacion</option>
+								  	<option value="predio">En el predio</option>
+								  	<option value="ciudad">En la ciudad</option>
+								  	<option value="canton">En el cantón</option>
+								  	<option value="provincia">En la provincia</option>
+								  	<option value="otra_provincia">En otra provincia</option>
+								  	<option value="exterior">En el exterior</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+				</div>
+
+				<!--situacion legal predio -->
+
+				<div class="datos_sit_legal">
+					<h4>Situacion Legal</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Dominio</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="dominio">
+								  	<option value="no_info">Sin informacion</option>
+								  	<option value="natural">Natural</option>
+								  	<option value="jurid_public">Juridica Publica</option>
+								  	<option value="jurid_private">Juridica Privada</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Tipo Tenencia</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="tip_tenencia">
+								  	<option value="propio">Propietario</option>
+								  	<option value="heredero">Her. Indivisa</option>
+								  	<option value="poseedor">Poseedor</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group" id="escritura">
+					  	<label class="col-md-4 control-label">Escritura</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<label class="radio-inline">
+									<input type="radio" name="opc_escritura" value="option1"> Si
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="opc_escritura" value="option2"> No
+								</label>
+						    </div>
+					  </div>
+					</div>
+
+					<!-- datos de la escritura-->
+					<div class="datos_escritura" id="datos_escritura">
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nro Notaria</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_not" placeholder="codigo" class="form-control" type="text" maxlength="10">
+							    </div>
+						  	</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Cantón</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="not_canton" placeholder="codigo" class="form-control" type="text" maxlength="10">
+							    </div>
+						  	</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nro Registro Propiedad</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_re_pro" placeholder="codigo" class="form-control" type="text" maxlength="10">
+							    </div>
+						  	</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Fecha</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="fecha_notaria" placeholder="codigo" class="form-control" type="date">
+							    </div>
+						  	</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Descripción de Tenencia</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="desc_tenencia">
+								  	<option value="estado">Estado</option>
+								  	<option value="municipal">Municipal</option>
+								  	<option value="provincial">C. Provincial</option>
+								  	<option value="comuna">Comuna</option>
+								  	<option value="curia">Curia</option>
+								  	<option value="asociacion">Asociación</option>
+								  	<option value="cooperativa">Cooperativa</option>
+								  	<option value="compania">Compañía</option>
+								  	<option value="mis_rel">Mision Religiosa</option>
+								  	<option value="particular">Particular</option>
+								  	<option value="asis_social">Asist. Social</option>
+								  	<option value="gob_ext">Gob. Extranjero</option>
+								  	<option value="otros">Otros</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Translación de Dominio</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="trans_dom">
+								  	<option value="com_vent">Compra -Venta</option>
+								  	<option value="adjudicacion">Adjudicación</option>
+								  	<option value="donacion">Donación</option>
+								  	<option value="herencia">Herencia</option>
+								  	<option value="posesion">Posesión</option>
+								  	<option value="permuta">Permuta</option>
+								  	<option value="participacion">Participación</option>
+								  	<option value="remate">Remate</option>
+								  	<option value="otro">Otro</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+				</div>
+
+				<!-- identificacion de division-->
+				<div class="datos_ident_division">
+					<h4>Identificacion de Division</h4>
+					<div class="form-group" id="escritura">
+					  	<label class="col-md-4 control-label">Tiene aprobacion</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<label class="radio-inline">
+									<input type="radio" name="opc_div" value="option3"> Si
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="opc_div" value="option4"> No
+								</label>
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="datos_division">
+						<div class="form-group">
+							<label class="col-md-4 control-label">Responsable Aprobación</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="res_aprob" placeholder="responsable" class="form-control" type="text" maxlength="45">
+							    </div>
+						  	</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Fecha Aprobación</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="fec_aprob" class="form-control" type="date">
+							    </div>
+						  	</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nombre Lotizacion</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="nom_lot" placeholder="nombre division" class="form-control" type="text" maxlength="10">
+							    </div>
+						  	</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nro Lote</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="fecha_notaria" placeholder="numero lote" class="form-control" type="text" maxlength="10">
+							    </div>
+						  	</div>
+						</div>
+					</div>
+
+				</div>
+
+				<!-- uso y ocupacion del predio-->
+				<div class="datos_sit_legal">
+					<h4>Uso y Ocupación del Predio</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Codigo Destino Economico</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="cod_det_eco" placeholder="cod destino economico" class="form-control" type="text" maxlength="10">
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Descripción Destino Economico</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="desc_det_eco" placeholder="descripcion destino economico" class="form-control" type="text" maxlength="45">
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Tipo de Usuario</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="tip_usuario">
+								  	<option value="propiedad">Propietario</option>
+								  	<option value="arrendado">Arrendatario</option>
+								  	<option value="posesion">Posesionario</option>
+								  	<option value="usufructu">Usufructo</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Tiene Edificación</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<label class="radio-inline">
+									<input type="radio" name="opc_edif" value="option5"> Si
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="opc_edif" value="option6"> No
+								</label>
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="datos_ocupacion_predio">
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nro Bloques Terminados</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="nro_bloq_term" placeholder="nro bloques terminados" class="form-control" type="text" maxlength="6">
+							    </div>
+						  	</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">Nro Bloques Construcción</label>  
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_bloq_cons" class="form-control" type="text" placeholder="nro bloques construccion">
+							    </div>
+						  	</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- caracteristicas fisicas del predio-->
+				<div class="datos_carc_fis_predio">
+					<h4>Caracteristicas Fisicas del Predio</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Forma del Predio</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="forma_predio">
+								  	<option value="regular">Regular</option>
+								  	<option value="irregular">Irregular</option>
+								  	<option value="m_irregular">Muy Irregular</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Topografía</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="topog_predio">
+								  	<option value="plano">Plana</option>
+								  	<option value="ondular">Ondulado</option>
+								  	<option value="pen_leve">Pendiente Leve</option>
+								  	<option value="pen_media">Pendiente Media</option>
+								  	<option value="pen_fuerte">Pendiente Fuerte</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Tipo de Riesgo</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="tip_riesgo">
+								  	<option value="no_riesgo">No tiene</option>
+								  	<option value="deslave">Deslaves</option>
+								  	<option value="hundido">Hundimientos</option>
+								  	<option value="inundar">Inundación</option>
+								  	<option value="helar">Heladas</option>
+								  	<option value="contam">Contaminación</option>
+								  	<option value="geologico">Geológico</option>
+								  	<option value="viento">Vientos</option>
+								  	<option value="volcan">Volcanico</option>
+								  	<option value="otro">Otro</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Erosión</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="erosion_predio">
+								  	<option value="no_tiene">No tiene</option>
+								  	<option value="leve">Leve</option>
+								  	<option value="moderado">Moderado</option>
+								  	<option value="severo">Severo</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+				</div>
+
+				<!-- infraestructura y servicios en la via-->
+				<div class="datos_carc_fis_predio">
+					<h4>Infraestructura y Servicios en la Via</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Tipo y Jerarquia Vial</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="tip_jer_vial">
+								  	<option value="no_tiene">No tiene</option>
+								  	<option value="primer">Primer orden</option>
+								  	<option value="segundo">Segundo orden</option>
+								  	<option value="tercer">Tercer orden</option>
+								  	<option value="peatonal">Peatonal</option>
+								  	<option value="herradura">Herradura</option>
+								  	<option value="fluvial">Fluvial</option>
+								  	<option value="linea_ferrea">Linea Ferrea</option>
+								  	<option value="Otra">Otra</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Material de la Calzada</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="mat_calzada">
+								  	<option value="tierra">Tierra</option>
+								  	<option value="lastre">Lastre (base)</option>
+								  	<option value="adoquin">Adoquín</option>
+								  	<option value="adocreto">Adocreto</option>
+								  	<option value="asfalto">Asfalto</option>
+								  	<option value="hormigon">Hormigón</option>
+								  	<option value="otro">Otro</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Agua de Consumo Humano</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="agua_cons_hum">
+								  	<option value="no_tiene">No tiene</option>
+								  	<option value="red_entubada">Red pública entubada</option>
+								  	<option value="red_tratada">Red pública tratada</option>
+								  	<option value="rio">Rio o acequia</option>
+								  	<option value="pozo">Pozo o vertiente</option>
+								  	<option value="carro">Carro Cisterna</option>
+								  	<option value="otra">Otras fuentas</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Red de Energía Eléctrica</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<label class="radio-inline">
+									<input type="radio" name="opc_elect" value="option5"> Si
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="opc_elect" value="option6"> No
+								</label>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Alumbrado Publico</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<label class="radio-inline">
+									<input type="radio" name="opc_alum" value="option5"> Si
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="opc_alum" value="option6"> No
+								</label>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Red de Alcantarillado</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<label class="radio-inline">
+									<input type="radio" name="opc_alcan" value="option5"> Si
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="opc_alcan" value="option6"> No
+								</label>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Red Telefonia</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<label class="radio-inline">
+									<input type="radio" name="opc_tel" value="option5"> Si
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="opc_tel" value="option6"> No
+								</label>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Transporte Publico</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="agua_cons_hum">
+								  	<option value="no_tiene">No tiene</option>
+								  	<option value="provincial">Inter-Provincial</option>
+								  	<option value="cantonal">Inter-cantonal</option>
+								  	<option value="parroquial">Inter-parroquial</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Estado de la Via</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="est_via">
+								  	<option value="bueno">Bueno</option>
+								  	<option value="regular">Regular</option>
+								  	<option value="malo">Malo</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Poblaciones cercanas al predio</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="pobl_predio">
+								  	<option value="cap_prov">Capital Provincial</option>
+								  	<option value="cab_cant">Cabecera Cantonal</option>
+								  	<option value="cab_parr">Cabecera Parroquial</option>
+								  	<option value="asent_urb">Asentamientos Urbanos</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+				</div>
+
+				<!-- servicios instalados en el predio -->
+				<div class="datos_carc_fis_predio">
+					<h4>Servicios Instalados en el Predio</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Abastesimiento de Agua</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="abast_agua">
+								  	<option value="no_tiene">No tiene</option>
+								  	<option value="pozo">Pozo o vertiente</option>
+								  	<option value="entubada">Red pública entubada</option>
+								  	<option value="tratada">Red pública tratada</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Numero Medidores</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_med_agua" class="form-control" type="text" placeholder="nro medidores agua">
+							    </div>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Numero Medidor principal</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_med_agua_prin" class="form-control" type="text" placeholder="nro medidor agua principal">
+							    </div>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Evacuacion de Aguas Servidas</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="evac_agua">
+								  	<option value="no_tiene">No tiene</option>
+								  	<option value="cielo">A cielo abierto</option>
+								  	<option value="rio">Rio o quebrada</option>
+								  	<option value="pozo">Pozo séptico</option>
+								  	<option value="publica">Red publica</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Energía Eléctrica</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="abast_agua">
+								  	<option value="no_tiene">No tiene</option>
+								  	<option value="medidor">Tiene instalada con medidor</option>
+								  	<option value="no_medidor">Tiene instalada sin medidor</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Numero Medidores</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_med_elec" class="form-control" type="text" placeholder="nro medidores electricos">
+							    </div>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Numero Medidor principal</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_med_elec_prin" class="form-control" type="text" placeholder="nro medidor electrico principal">
+							    </div>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Numero Lineas Telefonicas</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_lin_tel" class="form-control" type="text" placeholder="nro lineas">
+							    </div>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Numero Telefono Principal</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<div class="input-group">
+								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+							  		<input name="num_tel_prin" class="form-control" type="text" placeholder="nro telefono principal">
+							    </div>
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Riego</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="riego">
+								  	<option value="no_tiene">No tiene</option>
+								  	<option value="canal">Canal</option>
+								  	<option value="rio">Rio Quebrada</option>
+								  	<option value="vertiente">Vertiente</option>
+								  	<option value="publico">Público-Comunal</option>
+								  	<option value="reservorio">Reservorio</option>
+								  	<option value="otro">Otro</option>
+								</select>
+						    </div>
+					  	</div>
+					</div>
+				</div>
+
+				<!-- Observaciones -->
+				<div class="datos_obervaciones">
+					<h4>Observaciones</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Observacion</label>  
+						<div class="col-md-7 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="observacion" class="form-control" type="text" placeholder="Observaciones">
+							</div>
+					  	</div>
+					</div>
+				</div>
+
+				<!-- responsables -->
+
+				<div class="datos_responsables">
+					<h4>Responsables</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Empadronado por</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="empadronado" class="form-control" type="text" placeholder="empadronado">
+							</div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Fecha Empadronamiento</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="fec_emp" class="form-control" type="date" placeholder="empadronado">
+							</div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Revisado por</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="revisado" class="form-control" type="text" placeholder="empadronado">
+							</div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Fecha Revisado</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="fec_rev" class="form-control" type="date" placeholder="empadronado">
+							</div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Digitado por</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="digitado" class="form-control" type="text" placeholder="empadronado">
+							</div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Fecha Digitado</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="fec_dig" class="form-control" type="date" placeholder="empadronado">
+							</div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Jefe Avaluos y Catastros</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="avalui_catastro" class="form-control" type="text" placeholder="empadronado">
+							</div>
+					  	</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Fecha</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="fec_catastro" class="form-control" type="date" placeholder="empadronado">
+							</div>
+					  	</div>
+					</div>
+				</div>
+
+				<!-- Success message -->
+				{{mensaje}}
+
+				<!-- Button -->
+				<div class="form-group">
+				  	<label class="col-md-4 control-label"></label>
+				  	<div class="col-md-4">
+				    	<button type="submit" class="btn btn-warning" >Guardar<span class="glyphicon glyphicon-send"></span></button>
+				  	</div>
+				</div>
+
+			</fieldset>
+		</form>
+    </div><!-- /.container -->
+    <script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrapValidator.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/insert_view.js'%}"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+		    $('input[type="radio"]').click(function(){
+		        if($(this).attr("value")=="option1"){
+		            $(".datos_escritura").show();
+		        }
+		        if($(this).attr("value")=="option2"){
+		            $(".datos_escritura").hide();
+		        }
+		    });
+		});
+    </script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+		    $('input[type="radio"]').click(function(){
+		        if($(this).attr("value")=="option3"){
+		            $(".datos_division").show();
+		        }
+		        if($(this).attr("value")=="option4"){
+		            $(".datos_division").hide();
+		        }
+		    });
+		});
+    </script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+		    $('input[type="radio"]').click(function(){
+		        if($(this).attr("value")=="option5"){
+		            $(".datos_ocupacion_predio").show();
+		        }
+		        if($(this).attr("value")=="option6"){
+		            $(".datos_ocupacion_predio").hide();
+		        }
+		    });
+		});
+    </script>
+</body>
+</html>

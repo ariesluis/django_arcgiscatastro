@@ -1,0 +1,183 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulario Ingreso de Datos</title>
+	<meta charset=utf-8>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/insert_view.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+</head>
+<body>
+
+	<div class="container">
+
+		<form action="{% url 'insertar_propietario' %}" enctype="multipart/form-data" class="well form-horizontal" method="post"  id="insert_form">{% csrf_token %}
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Catastro Predial Rural - Registro Propietarios</legend>
+
+				<!--datos propietario-->
+				<div class="datos_propietario">
+					<h4>Propietario</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Cedula/R.U.C</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="dni" placeholder="cedula/RUC" class="form-control"  type="text" maxlength="10">
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Apellidos</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="apellidos" placeholder="apellidos" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+
+					<!-- Text input-->
+
+					<div class="form-group">
+					  <label class="col-md-4 control-label" >Nombres</label> 
+					    <div class="col-md-4 inputGroupContainer">
+					    <div class="input-group">
+					  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					  <input name="nombre" placeholder="nombres" class="form-control"  type="text">
+					    </div>
+					  </div>
+					</div>
+
+					<!-- Text input-->
+
+					<div class="form-group">
+					  	<label class="col-md-4 control-label" >Fecha Nacimiento</label> 
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						  		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						  		<input name="fecha_nac" class="form-control" value="2000-01-01" type="date" required="">
+						    </div>
+					  	</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">E-Mail</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+						  		<input name="email" placeholder="Correo Electronico" class="form-control"  type="text">
+						    </div>
+					  </div>
+					</div>
+
+
+					<!-- Text input-->
+					       
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Telefono</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+						  		<input name="phone" placeholder="(2)755-1212" class="form-control" type="text">
+						    </div>
+					  	</div>
+					</div>
+
+					<!-- Text input-->
+					      
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Direccion</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="address" placeholder="direccion" class="form-control" type="text">
+						    </div>
+					  </div>
+					</div>
+
+					<!-- Text input-->
+					 
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Ciudad</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="city" placeholder="ciudad" class="form-control"  type="text">
+						    </div>
+					  </div>
+					</div>
+				</div>
+
+				<!-- datos propietario anterior-->
+
+				<div class="datos_representante_legal">
+					<h4>Propietario Anterior</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Nombres y Apellidos</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="nom_ape_ant_pro" placeholder="Nombres y Apellidos" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+				</div>
+				<!-- datos representante legal -->
+				   
+				<div class="datos_representante_legal">
+					<h4>Representante Legal</h4>
+					<div class="form-group">
+						<label class="col-md-4 control-label">Cedula/R.U.C</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="dni_rep" placeholder="cedula/RUC" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label">Nombres y Apellidos</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  <input  name="nom_ape_rep" placeholder="apellidos" class="form-control"  type="text">
+						    </div>
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<label class="col-md-4 control-label">Direccion</label>  
+					    <div class="col-md-4 inputGroupContainer">
+						    <div class="input-group">
+						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+						  		<input name="address_rep" placeholder="direccion" class="form-control" type="text">
+						    </div>
+					  </div>
+					</div>
+				</div>
+
+				<!-- Success message -->
+				
+
+				<!-- Button -->
+				<div class="form-group">
+				  	<label class="col-md-4 control-label"></label>
+				  	<div class="col-md-4">
+				    	<button type="submit" class="btn btn-warning" >Guardar<span class="glyphicon glyphicon-send"></span></button>
+				  	</div>
+				</div>
+
+			</fieldset>
+		</form>
+    </div><!-- /.container -->
+    <script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrapValidator.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/insert_view.js'%}"></script>
+</body>
+</html>
