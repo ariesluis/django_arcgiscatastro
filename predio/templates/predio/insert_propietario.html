@@ -11,7 +11,7 @@
 
 	<div class="container">
 
-		<form action="{% url 'insertar_propietario' %}" enctype="multipart/form-data" class="well form-horizontal" method="post"  id="insert_form">{% csrf_token %}
+		<form action="{% url 'predio.views.insertar_propietario' %}" enctype="multipart/form-data" class="well form-horizontal" method="post"  id="insert_form">{% csrf_token %}
 			<fieldset>
 
 				<!-- Form Name -->
@@ -55,11 +55,11 @@
 					<!-- Text input-->
 
 					<div class="form-group">
-					  	<label class="col-md-4 control-label" >Fecha Nacimiento</label> 
+					  	<label class="col-md-4 control-label">Fecha Nacimiento</label> 
 					    <div class="col-md-4 inputGroupContainer">
 						    <div class="input-group">
 						  		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-						  		<input name="fecha_nac" class="form-control" value="2000-01-01" type="date" required="">
+						  		<input name="fecha_nac" class="form-control" value="2000-01-01" type="date" required>
 						    </div>
 					  	</div>
 					</div>
@@ -103,13 +103,21 @@
 					<!-- Text input-->
 					 
 					<div class="form-group">
-					  	<label class="col-md-4 control-label">Ciudad</label>  
-					    <div class="col-md-4 inputGroupContainer">
-						    <div class="input-group">
-						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-						  		<input name="city" placeholder="ciudad" class="form-control"  type="text">
+						<label class="col-md-4 control-label">Residencia</label>  
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							  	<select class="form-control" name="res_pro">
+								  	<option value="no_info">Sin informacion</option>
+								  	<option value="predio">En el predio</option>
+								  	<option value="ciudad">En la ciudad</option>
+								  	<option value="canton">En el cantón</option>
+								  	<option value="provincia">En la provincia</option>
+								  	<option value="otra_provincia">En otra provincia</option>
+								  	<option value="exterior">En el exterior</option>
+								</select>
 						    </div>
-					  </div>
+					  	</div>
 					</div>
 				</div>
 

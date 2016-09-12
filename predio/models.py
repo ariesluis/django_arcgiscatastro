@@ -70,7 +70,6 @@ class Escrituras(models.Model):
 class Ident_Divisiones(models.Model):
     id_id = models.AutoField(primary_key=True)
     fi = models.ForeignKey('Fichas', blank=True, null=True)
-    id_aprobacion = models.CharField(max_length=45, blank=True, null=True)
     id_responsable_aprob = models.CharField(max_length=45, blank=True, null=True)
     id_fecha_aprobacion = models.CharField(max_length=45, blank=True, null=True)
     id_nombre_lotizacion = models.CharField(max_length=45, blank=True, null=True)

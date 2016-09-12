@@ -10,29 +10,33 @@
 <body>
 
 	<div class="container">
+		<form action="{% url 'predio.views.buscarPropietarioPredio' %}" class="well form-horizontal" method="post">{% csrf_token %}
+			<fieldset>
+				<legend>Catastro Predial Rural</legend>
+				<div class="col-md-3 form-group">
+					<input type="text" class="form-control" name="ci_ape" placeholder="Ingrese CI/RUC o Apellidos">
+				</div>
+			 	<button type="submit" class="btn btn-default">Buscar</button>
+			</fieldset>
+		</form>
+	</div>
 
-		<form action="{% url 'predio.views.insertar_predio' %}" class="well form-horizontal" method="post"  id="insert_form">{% csrf_token %}
+	<div class="container">
+		<form action="{% url 'insertar_predio' %}" class="well form-horizontal" method="post"  id="insert_form">{% csrf_token %}
 			<fieldset>
 
 				<!-- Form Name -->
-				<legend>Catastro Predial Rural - Registro Predios</legend>
+				<legend>Registro Predios</legend>
 
 				<!--busqueda y propietario-->
 				<div class="busqueda_propietario">
-					<form class="navbar-form navbar-left" role="search">
-						<div class="col-md-3 form-group">
-					    	<input type="text" class="form-control" placeholder="Ingrese CI/RUC o Apellidos">
-					  	</div>
-					 	<button type="submit" class="btn btn-default">Submit</button>
-					</form>
-
 					<h4>Propietario</h4>
 					<div class="form-group">
 						<label class="col-md-4 control-label">Cedula/R.U.C</label>  
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <input  name="dni" placeholder="cedula/RUC" class="form-control"  type="text" maxlength="10" disabled>
+							  <input  name="dni" value="{{ propietario.pr_dni }}" placeholder="cedula/RUC" class="form-control"  type="text" maxlength="10" disabled>
 						    </div>
 					  	</div>
 					</div>
@@ -42,7 +46,7 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <input  name="apellidos" placeholder="apellidos" class="form-control"  type="text" disabled>
+							  <input  name="apellidos" value="{{ propietario.pr_apellido }}" placeholder="apellidos" class="form-control"  type="text" disabled>
 						    </div>
 					  	</div>
 					</div>
@@ -54,7 +58,7 @@
 					    <div class="col-md-4 inputGroupContainer">
 					    <div class="input-group">
 					  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-					  <input name="nombre" placeholder="nombres" class="form-control"  type="text" disabled>
+					  <input name="nombre" value="{{ propietario.pr_nombre }}" placeholder="nombres" class="form-control"  type="text" disabled>
 					    </div>
 					  </div>
 					</div>
@@ -100,7 +104,8 @@
 						<div class="col-md-2 inputGroupContainer">
 					  		<input  name="cod_man" placeholder="00" class="form-control"  type="text" maxlength="2">
 					  	</div>
-
+					</div>
+					<div class="form-group">
 					  	<label class="col-md-1 control-label">Predio</label>  
 						<div class="col-md-2 inputGroupContainer">
 					  		<input  name="cod_pre" placeholder="000" class="form-control"  type="text" maxlength="3">
@@ -212,7 +217,7 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <input  name="lin_norte" placeholder="Nombres propietario" class="form-control"  type="text">
+							  <input  name="lin_norte" value="" placeholder="Nombres propietario" class="form-control"  type="text">
 						    </div>
 					  	</div>
 					</div>
@@ -221,7 +226,7 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <input  name="lin_sur" placeholder="Nombres propietario" class="form-control"  type="text">
+							  <input  name="lin_sur" value="" placeholder="Nombres propietario" class="form-control"  type="text">
 						    </div>
 					  	</div>
 					</div>
@@ -230,7 +235,7 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <input  name="lin_este" placeholder="Nombres propietario" class="form-control"  type="text">
+							  <input  name="lin_este" value="" placeholder="Nombres propietario" class="form-control"  type="text">
 						    </div>
 					  	</div>
 					</div>
@@ -239,11 +244,12 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <input  name="lin_oeste" placeholder="Nombres propietario" class="form-control"  type="text">
+							  <input  name="lin_oeste" value="" placeholder="Nombres propietario" class="form-control"  type="text">
 						    </div>
 					  	</div>
 					</div>
 				</div>
+
 				<!-- datos referencia cartografica -->
 				   
 				<div class="datos_cartograficos">
@@ -253,7 +259,7 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <input  name="c_top" placeholder="Codigo" class="form-control"  type="text" maxlength="10">
+							  <input  name="c_top" value="" placeholder="Codigo" class="form-control"  type="text" maxlength="10">
 						    </div>
 					  	</div>
 					</div>
@@ -263,7 +269,7 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <input  name="img_sat" placeholder="codigo" class="form-control"  type="text" maxlength="10">
+							  <input  name="img_sat" value="" placeholder="codigo" class="form-control"  type="text" maxlength="10">
 						    </div>
 					  	</div>
 					</div>
@@ -272,7 +278,7 @@
 					    <div class="col-md-4 inputGroupContainer">
 						    <div class="input-group">
 						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-						  		<input name="fot_area" placeholder="codigo" class="form-control" type="text" maxlength="10">
+						  		<input name="fot_area" value="" placeholder="codigo" class="form-control" type="text" maxlength="10">
 						    </div>
 					  </div>
 					</div>
@@ -281,33 +287,12 @@
 					    <div class="col-md-4 inputGroupContainer">
 						    <div class="input-group">
 						        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-						  		<input name="otro_ref_car" placeholder="codigo" class="form-control" type="text" maxlength="10">
+						  		<input name="otro_ref_car" value="" placeholder="codigo" class="form-control" type="text" maxlength="10">
 						    </div>
 					  </div>
 					</div>
 				</div>
 
-				<!--dato residencia propietario-->
-				<div class="dato_res_pro">
-					<h4>Residencia del Propietario</h4>
-					<div class="form-group">
-						<label class="col-md-4 control-label">Residencia</label>  
-						<div class="col-md-4 inputGroupContainer">
-							<div class="input-group">
-							  	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  	<select class="form-control" name="res_pro">
-								  	<option value="no_info">Sin informacion</option>
-								  	<option value="predio">En el predio</option>
-								  	<option value="ciudad">En la ciudad</option>
-								  	<option value="canton">En el cantón</option>
-								  	<option value="provincia">En la provincia</option>
-								  	<option value="otra_provincia">En otra provincia</option>
-								  	<option value="exterior">En el exterior</option>
-								</select>
-						    </div>
-					  	</div>
-					</div>
-				</div>
 
 				<!--situacion legal predio -->
 
@@ -363,7 +348,7 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							  		<input name="num_not" placeholder="codigo" class="form-control" type="text" maxlength="10">
+							  		<input name="num_not" placeholder="Nro Notaria" class="form-control" type="text" maxlength="10">
 							    </div>
 						  	</div>
 						</div>
@@ -372,7 +357,7 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							  		<input name="not_canton" placeholder="codigo" class="form-control" type="text" maxlength="10">
+							  		<input name="not_canton" placeholder="Canton" class="form-control" type="text" maxlength="10">
 							    </div>
 						  	</div>
 						</div>
@@ -381,7 +366,7 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							  		<input name="num_re_pro" placeholder="codigo" class="form-control" type="text" maxlength="10">
+							  		<input name="num_re_pro" placeholder="nro registro propiedad" class="form-control" type="text" maxlength="10">
 							    </div>
 						  	</div>
 						</div>
@@ -390,7 +375,7 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							  		<input name="fecha_notaria" placeholder="codigo" class="form-control" type="date">
+							  		<input name="fecha_notaria" class="form-control" type="date">
 							    </div>
 						  	</div>
 						</div>
@@ -491,7 +476,7 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							  		<input name="fecha_notaria" placeholder="numero lote" class="form-control" type="text" maxlength="10">
+							  		<input name="nro_lote" placeholder="numero lote" class="form-control" type="text" maxlength="10">
 							    </div>
 						  	</div>
 						</div>
@@ -554,7 +539,7 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							  		<input name="nro_bloq_term" placeholder="nro bloques terminados" class="form-control" type="text" maxlength="6">
+							  		<input name="nro_bloq_term" value="" placeholder="nro bloques terminados" class="form-control" type="text" maxlength="6">
 							    </div>
 						  	</div>
 						</div>
@@ -563,7 +548,7 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 								  	<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-							  		<input name="num_bloq_cons" class="form-control" type="text" placeholder="nro bloques construccion">
+							  		<input name="num_bloq_cons" value="" class="form-control" type="text" placeholder="nro bloques construccion">
 							    </div>
 						  	</div>
 						</div>
