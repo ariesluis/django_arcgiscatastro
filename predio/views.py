@@ -361,16 +361,100 @@ def insertar_infraestructura_via(request):
 		iv_id=infra_via.iv_id+1
 	except Infra_Serv_Vias.DoesNotExist:
 		pass
-    fi = models.ForeignKey('Fichas', blank=True, null=True)
-    iv_tipo_vial = request.POST.get('tip_riesgo','')
-    iv_mat_calzada = request.POST.get('tip_riesgo','')
-    iv_agua_consumo_hum = request.POST.get('tip_riesgo','')
-    iv_energia_electrica = request.POST.get('tip_riesgo','')
-    iv_alumbrado_public = request.POST.get('tip_riesgo','')
-    iv_estado_via = request.POST.get('tip_riesgo','')
-    iv_pobla_cerca_predio = request.POST.get('tip_riesgo','')
-    iv_alcantarillado = request.POST.get('tip_riesgo','')
-    iv_telefonia = request.POST.get('tip_riesgo','')
-    iv_mat_poste_predio = request.POST.get('tip_riesgo','')
-    iv_nro_poste_predio = request.POST.get('tip_riesgo','')
-    iv_transporte_public = request.POST.get('tip_riesgo','')
+	iv_tipo_vial = request.POST.get('tip_jer_vial','')
+	iv_mat_calzada = request.POST.get('mat_calzada','')
+	iv_agua_consumo_hum = request.POST.get('agua_cons_hum','')
+	iv_energia_electrica = request.POST.get('opc_elect','')
+	iv_alumbrado_public = request.POST.get('opc_alum','')
+	iv_estado_via = request.POST.get('est_via','')
+	iv_pobla_cerca_predio = request.POST.get('pobl_predio','')
+	iv_alcantarillado = request.POST.get('opc_alcan','')
+	iv_telefonia = request.POST.get('opc_tel','')
+	iv_transporte_public = request.POST.get('trans_pub_via','')
+	Infra_Serv_Vias.objects.create(
+    	iv_id=iv_id,
+    	iv_tipo_vial=iv_tipo_vial,
+    	iv_mat_calzada=iv_mat_calzada,
+    	iv_agua_consumo_hum=iv_agua_consumo_hum,
+    	iv_energia_electrica=iv_energia_electrica,
+    	iv_alumbrado_public=iv_alumbrado_public,
+    	iv_estado_via=iv_estado_via,
+    	iv_pobla_cerca_predio=iv_pobla_cerca_predio,
+    	iv_alcantarillado=iv_alcantarillado,
+    	iv_telefonia=iv_telefonia,
+    	iv_transporte_public=iv_transporte_public,
+    	fi=ficha_global
+    )
+
+def insertar_servicios_predio(request):
+	sp_id = 1
+	try:
+		servicios=Serv_Instal_Predios.objects.latest('sp_id')
+		sp_id=servicios.sp_id+1
+	except Serv_Instal_Predios.DoesNotExist:
+		pass
+	sp_abast_agua = request.POST.get('abast_agua','')
+	sp_num_medidores_agua=request.POST.get('num_med_agua','')
+	sp_num_med_prin_agua=request.POST.get('num_med_agua_prin','')
+	sp_evac_agua_servida = request.POST.get('evac_agua','')
+	sp_energia_elect = request.POST.get('abast_electrico','')
+	sp_num_medidores_elec=request.POST.get('num_med_elec','')
+	sp_num_med_prin_elec=request.POST.get('num_med_elec_prin','')
+	sp_num_lineas_tel=request.POST.get('num_lin_tel','')
+	sp_num_telf_prin=request.POST.get('num_tel_prin','')
+	sp_riego = request.POST.get('riego','')
+	Serv_Instal_Predios.objects.create(
+		sp_abast_agua = sp_abast_agua,
+		sp_num_medidores_agua=sp_num_medidores_agua,
+		sp_num_med_prin_agua=sp_num_med_prin_agua,
+		sp_evac_agua_servida = sp_evac_agua_servida,
+		sp_energia_elect = sp_energia_elect,
+		sp_num_medidores_elec=sp_num_medidores_elec,
+		sp_num_med_prin_elec=sp_num_med_prin_elec,
+		sp_num_lineas_tel=sp_num_lineas_tel,
+		sp_num_telf_prin=sp_num_telf_prin,
+		sp_riego = sp_riego,
+		fi=ficha_global
+	)
+
+def insertar_observacion(request):
+	ob_id = 1
+	try:
+		obs=Observaciones.objects.latest('ob_id')
+		ob_id=obs.ob_id+1
+	except Observaciones.DoesNotExist:
+		pass
+	ob_desc = request.POST.get('observacion','')
+	Observaciones.objects.create(
+		ob_id=ob_id,
+		ob_desc=ob_desc,
+		fi=ficha_global
+	)
+
+def insertar_responsables(request):
+	re_id = models.AutoField(primary_key=True)
+	try:
+		obs=Responsables.objects.latest('re_id')
+		re_id=obs.re_id+1
+	except Responsables.DoesNotExist:
+		pass
+	re_empadronado = request.POST.get('empadronado','')
+	re_fecha_emp = request.POST.get('fec_emp','')
+	re_revisado = request.POST.get('revisado','')
+	re_fecha_rev = request.POST.get('fec_rev','')
+	re_digitado = request.POST.get('digitado','')
+	re_fecha_dig = request.POST.get('fec_dig','')
+	re_jefe_avaluo_catas = request.POST.get('avaluo_catastro','')
+	re_fecha_jefe_aval_catas = request.POST.get('fec_catastro','')
+	Responsables.objects.create(
+		re_id=re_id,
+		re_empadronado = re_empadronado,
+		re_fecha_emp = re_fecha_emp,
+		re_revisado = re_revisado,
+		re_fecha_rev = re_fecha_rev,
+		re_digitado = re_digitado,
+		re_fecha_dig = re_fecha_dig,
+		re_jefe_avaluo_catas = re_jefe_avaluo_catas,
+		re_fecha_jefe_aval_catas = re_fecha_jefe_aval_catas,
+		fi=ficha_global
+	)

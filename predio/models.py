@@ -136,8 +136,6 @@ class Infra_Serv_Vias(models.Model):
     iv_pobla_cerca_predio = models.CharField(max_length=45, blank=True, null=True)
     iv_alcantarillado = models.CharField(max_length=45, blank=True, null=True)
     iv_telefonia = models.CharField(max_length=45, blank=True, null=True)
-    iv_mat_poste_predio = models.CharField(max_length=45, blank=True, null=True)
-    iv_nro_poste_predio = models.CharField(max_length=45, blank=True, null=True)
     iv_transporte_public = models.CharField(max_length=45, blank=True, null=True)
 
 #observar esta tabla
